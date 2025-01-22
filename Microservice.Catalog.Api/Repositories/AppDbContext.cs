@@ -13,23 +13,20 @@ namespace Microservice.Catalog.Api.Repositories
         public DbSet<Category> Categories { get; set; }
 
 
-
         public static AppDbContext Create(IMongoDatabase database)
         {
-            var dbContextOptionsBuilder = new DbContextOptionsBuilder<AppDbContext>
-                ().UseMongoDB(database.Client,database.DatabaseNamespace.DatabaseName);
-            return new AppDbContext(dbContextOptionsBuilder.Options);
-        }
+            var optionsBuilder =
+                new DbContextOptionsBuilder<AppDbContext>().UseMongoDB(database.Client,
+                    database.DatabaseNamespace.DatabaseName);
 
+
+            return new AppDbContext(optionsBuilder.Options);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-
-
-            base.OnModelCreating(modelBuilder);
         }
 
 
