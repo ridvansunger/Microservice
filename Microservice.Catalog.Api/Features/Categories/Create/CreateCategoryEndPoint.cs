@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microservice.Shared.Extensions;
+using Microservice.Shared.Filters;
 
 namespace Microservice.Catalog.Api.Features.Categories.Create
 {
@@ -14,10 +15,12 @@ namespace Microservice.Catalog.Api.Features.Categories.Create
 
 
                 return result.ToGenericResult();
-            });
+            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             //üsteki kodun kısalması
-            //group.MapPost("/", async (CreateCategoryCommand command, IMediator mediator) =>(await mediator.Send(command)).ToGenericResult());
+            //group.MapPost("/", async (CreateCategoryCommand command, IMediator mediator) =>
+            //            (await mediator.Send(command)).ToGenericResult())
+            //    .AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
 
             return group;
