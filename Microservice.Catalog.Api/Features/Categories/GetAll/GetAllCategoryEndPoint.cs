@@ -1,23 +1,22 @@
-﻿using MediatR;
-using Microservice.Catalog.Api.Features.Categories.Create;
+﻿using AutoMapper;
+using MediatR;
 using Microservice.Catalog.Api.Features.Categories.Dtos;
 using Microservice.Catalog.Api.Repositories;
 using Microservice.Shared;
 using Microservice.Shared.Extensions;
-using Microservice.Shared.Filters;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microservice.Catalog.Api.Features.Categories.GetAll
 {
     public class GetAllCategoryQuery : IRequest<ServiceResult<List<CategoryDto>>>;
    
-    public class GetAllCategoryQueryHandler (AppDbContext context): IRequestHandler<GetAllCategoryQuery, ServiceResult<List<CategoryDto>>>
+    public class GetAllCategoryQueryHandler (AppDbContext context,IMapper mapper): IRequestHandler<GetAllCategoryQuery, ServiceResult<List<CategoryDto>>>
     {
       
         public async Task<ServiceResult<List<CategoryDto>>> Handle(GetAllCategoryQuery request, CancellationToken cancellationToken)
         {
-            var categories = await context.Categories.ToListAsync();
-            var categoryDtos = categories.Select(x => new CategoryDto(x.Id, x.Name)).ToList();
+            var categories = await context.Categories.ToListAsync(cancellationToken);
+            var categoryDtos = mapper.Map<List<CategoryDto>>(categories);
             return (ServiceResult<List<CategoryDto>>)ServiceResult<List<CategoryDto>>.SuccessAsOk(categoryDtos);
         }
     }
