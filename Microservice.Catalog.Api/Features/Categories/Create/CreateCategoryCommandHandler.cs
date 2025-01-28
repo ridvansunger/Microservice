@@ -1,10 +1,4 @@
-﻿using MassTransit;
-using MediatR;
-using Microservice.Catalog.Api.Repositories;
-using Microservice.Shared;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Net;
+﻿
 
 namespace Microservice.Catalog.Api.Features.Categories.Create
 {
@@ -32,7 +26,7 @@ namespace Microservice.Catalog.Api.Features.Categories.Create
             await context.Categories.AddAsync(category, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
 
-            return (ServiceResult<CreateCategoryResponse>)ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(category.Id),"<empty>");
+            return (ServiceResult<CreateCategoryResponse>)ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(category.Id), "<empty>");
 
         }
     }

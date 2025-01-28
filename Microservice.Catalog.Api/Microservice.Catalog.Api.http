@@ -1,9 +1,6 @@
 @baseAddress = http://localhost:5064
 
-GET {{baseAddress}}/weatherforecast/
-Accept: application/json
-
-###
+@categoryId=08dd3a7a-e145-7854-c018-501ea6030000
 
 GET {{baseAddress}}/api/categories/
 Accept: application/json
@@ -16,4 +13,8 @@ Content-Type: application/json
   "name": "Category 1",
   "description": "Category 1 Description"
 }
+###
+GET {{baseAddress}}/api/categories/{{categoryId}}
+Accept: application/json
+
 ###

@@ -1,14 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
-using Microservice.Catalog.Api.Features.Categories.Dtos;
-using Microservice.Catalog.Api.Repositories;
-using Microservice.Shared;
-using Microservice.Shared.Extensions;
-using Microsoft.EntityFrameworkCore;
-
-namespace Microservice.Catalog.Api.Features.Categories.GetAll
+﻿namespace Microservice.Catalog.Api.Features.Categories.GetAll
 {
-    public class GetAllCategoryQuery : IRequest<ServiceResult<List<CategoryDto>>>;
+    public class GetAllCategoryQuery : IRequestByServiceResult<List<CategoryDto>>;
    
     public class GetAllCategoryQueryHandler (AppDbContext context,IMapper mapper): IRequestHandler<GetAllCategoryQuery, ServiceResult<List<CategoryDto>>>
     {
