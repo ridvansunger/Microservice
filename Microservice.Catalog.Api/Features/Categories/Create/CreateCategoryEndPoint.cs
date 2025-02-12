@@ -14,7 +14,9 @@ namespace Microservice.Catalog.Api.Features.Categories.Create
 
 
                 return result.ToGenericResult();
-            }).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
+            }).WithName("CreateCategory").AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
+            
+         
 
             //üsteki kodun kısalması
             //group.MapPost("/", async (CreateCategoryCommand command, IMediator mediator) =>

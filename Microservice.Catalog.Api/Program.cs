@@ -1,11 +1,7 @@
-using Microservice.Catalog.Api.Options;
-using Microservice.Catalog.Api.Repositories;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using Microservice.Catalog.Api.Features.Categories;
-using System.Reflection;
-using Microservice.Shared.Extensions;
 using Microservice.Catalog.Api;
+using Microservice.Catalog.Api.Features.Categories;
+using Microservice.Catalog.Api.Features.Courses;
+using Microservice.Catalog.Api.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +17,7 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 var app = builder.Build();
 
 app.AddCategoryGroupEndpointExt();
+app.AddCaourseGroupEndpointExt();
 
 
 if (app.Environment.IsDevelopment())

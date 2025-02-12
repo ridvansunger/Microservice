@@ -25,7 +25,7 @@
         public static RouteGroupBuilder GetByIdCategoryGroupItemEndpoind(this RouteGroupBuilder group)
         {
             group.MapGet("/{id:guid}", async (IMediator mediator,Guid id) =>
-                        (await mediator.Send(new GetCategoryByIdQuery(id))).ToGenericResult());
+                        (await mediator.Send(new GetCategoryByIdQuery(id))).ToGenericResult()).WithName("GetByIdCategory");
             return group;
 
         }

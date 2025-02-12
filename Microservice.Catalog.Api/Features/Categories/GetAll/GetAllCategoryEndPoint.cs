@@ -19,7 +19,7 @@
         public static RouteGroupBuilder GetAllCategoryGroupItemEndpoind(this RouteGroupBuilder group)
         {
             group.MapGet("/", async ( IMediator mediator) =>
-                        (await mediator.Send(new GetAllCategoryQuery())).ToGenericResult());
+                        (await mediator.Send(new GetAllCategoryQuery())).ToGenericResult()).WithName("GetAllCategory");
             return group;
 
         }
