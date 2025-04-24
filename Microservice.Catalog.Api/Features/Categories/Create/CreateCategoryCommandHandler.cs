@@ -29,5 +29,10 @@ namespace Microservice.Catalog.Api.Features.Categories.Create
             return (ServiceResult<CreateCategoryResponse>)ServiceResult<CreateCategoryResponse>.SuccessAsCreated(new CreateCategoryResponse(category.Id), "<empty>");
 
         }
+
+
+
+
+
     }
 }
